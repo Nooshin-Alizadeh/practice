@@ -1,0 +1,80 @@
+<div class="" [ngStyle]="config.style">
+
+    <table cdk-table [ngClass]="config.cssClass" [dataSource]="config.dataSource" #table class="table table-striped">
+        <!-- 
+        <ng-container cdkColumnDef="id" #sortDirection>
+            <th cdk-header-cell *cdkHeaderCellDef [style.width.px]="'50'"> ID
+                <span>
+                    <i style="text-align: center;" *ngIf="!idSort"
+                        (click)="sortByField('id' , gridSortConfig.Ascending);idSort=gridSortConfig.Ascending;"
+                        class="fa fa-sort"></i>
+                    <i style="text-align: center;" *ngIf="idSort == gridSortConfig.Ascending"
+                        (click)="sortByField('id' , gridSortConfig.Descending); idSort=gridSortConfig.Descending;"
+                        class="fa fa-sort-numeric-asc"></i>
+                    <i style="text-align: center;" *ngIf="idSort == gridSortConfig.Descending"
+                        (click)="sortByField('id' , gridSortConfig.None);idSort=gridSortConfig.None"
+                        class="fa fa-sort-numeric-desc"></i>
+                </span>
+            </th>
+
+            <td cdk-cell *cdkCellDef="let row" style="width: 50 px;" (click)="rowClick(row,$event)">
+
+                {{row.id}}
+                <i (click)="rowClick(row,$event)" class="far fa-id-card fa fa-file-text">
+                   
+                </i>
+            </td>
+        </ng-container> -->
+
+        <div *ngFor="let columnField of config.displayColumns">
+
+            <ng-container cdkColumnDef="{{columnField}}">
+                <th [GridSortConfig]="" column="{{columnField}}" cdk-header-cell *cdkHeaderCellDef>
+                    {{extractTitle(config,columnField)}}
+                </th>
+                <td cdk-cell *cdkCellDef="let row" style="width: 175px;">
+                    <!--(click)=""-->
+                    <a class="text-primary ml-2">
+                        {{extractData(row ,columnField )}}
+                    </a>
+
+                </td>
+            </ng-container>
+        </div>
+        <ng-container>
+            <tr cdk-header-row *cdkHeaderRowDef="config.displayColumns; sticky: true">
+            </tr>
+        </ng-container>
+
+        <ng-container>
+            <tr tabindex="0" cdk-row *cdkRowDef="let row; columns: config.displayColumns;" style="background-color: #f5f5f5;outline: 1px solid #fff;" (click)="selectRow($event,row)">
+            </tr>
+        </ng-container>
+
+    </table>
+</div>
+
+<div class=" row" *ngIf="config.pager">
+    <div class="col-md-6 col-lg-7">
+        <ngb-pagination class="d-flex justify-content-start" [boundaryLinks]="true" size="sm" (pageChange)="pageChange($event)" [pageSize]="config.pageSize || 0" [collectionSize]="config.total || 0" [page]="config.page"></ngb-pagination>
+    </div>
+    <div class="col-md-3 col-lg-3 text-right ">
+        <ul class="">
+            <li>
+                <button title="Refresh">(click)="config.refresh()"
+                    <i class="material-icons">refresh</i>
+                </button>
+            </li>
+        </ul>
+        <span>{{ config.total }} Items</span>
+    </div>
+    <div class=" row ml-2 col-md-3 col-lg-2">
+        <div>
+            <!-- <select class="custom-select" (change)="changeSize($event.target)" [(ngModel)]="config.pageSize">
+                <option *ngFor="let item of pageSizes" [ngValue]="item">{{ item }}</option>
+                <option [ngValue]="config.total">All</option>
+            </select> -->
+        </div>
+        <div class=" ml-2" style="color: #212529; font-size:13px;line-height: 30px;">Row Per Page</div>
+    </div>
+</div>
