@@ -28,5 +28,9 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "target": "es5",
+  "module": "commonjs",
+  "outDir": "out",
+  "sourceMap": true
 }
