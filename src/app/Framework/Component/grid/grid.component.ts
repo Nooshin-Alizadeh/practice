@@ -153,7 +153,7 @@ export class GridComponent implements OnInit, AfterViewInit {
   // @Output() onSelect = new EventEmitter<any>();
   @Output() onSelect = new EventEmitter<any>();
   @Input() set config(config: GridConfig) {
-    debugger;
+    
     this._config = config;
     if (this.config && this.config.displayColumns.length > 0) {
       this.init();
@@ -345,7 +345,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
   private get(page: number): void {
 
-    debugger;
+    
     this.loading();
     if (this.config.requestType === 'get') {
       this.httpService.get(this.config.url || '', this.getParams()).subscribe((response: IResponse<any>) => {
@@ -398,7 +398,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     return config.columns.filter((s: { field: string; })=>s.field==field)[0].title;
   }
   selectRow(event:any,rowData:any){//:PointerEvent|
-    debugger;
+    
     this.onSelect.emit(rowData);
   }
 

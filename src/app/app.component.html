@@ -322,13 +322,11 @@
 <div class="content" role="main">
 
     <div class="row">
+
         <!-- <app-lookup [config]="lookupConfig"></app-lookup> -->
-        <app-lookup [config]="lookupConfig" [(ngModelView)]="lookUptest"></app-lookup>
+        <app-lookup [config]="lookupConfig" [(NgModel)]="lookUptest"></app-lookup>
     </div>
-    <!-- 
-    <button type="button" class="btn btn-primary" (click)="click(lookUptest)">
-      Press Me 
-    </button> -->
+
     <!-- Resources -->
 
     <input type="hidden" #selection>

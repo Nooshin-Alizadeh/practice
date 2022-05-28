@@ -1,28 +1,33 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-lookup',
   templateUrl: './lookup.component.html',
   styleUrls: ['./lookup.component.scss']
 })
-export class LookupComponent implements OnInit {
+export class LookupComponent implements OnInit, OnChanges {
 
   @Input() config: any;
   // @Input()  size!: number | string;
-  // get ngModel(): any { return this._ngModelValue; }
-  // set ngModel(value:any) {
-  //   this._ngModelValue=value;
-  //   this._inputValue =value && value[this.config.displayPattern] || '' //(name && name.trim()) || '<no name set>';
-  // }
-   public _inputValue = '';
-  public _ngModelValue: any;
+  @Input() set NgModel(value: any) {
+    this._ngModelValue = value;
+    this._inputValue = value && value[this.config.displayPattern] || '' //(name && name.trim()) || '<no name set>';
+  }
+  get ngModel(): any { return this._ngModelValue; }
 
-  @Input() ngModelView!: any;
-  @Output() ngModelViewChange = new EventEmitter<any>();
+  public _inputValue = '';
+  private _ngModelValue: any;
+
+  // @Input() NgModel!: any;
+  @Output() NgModelChange = new EventEmitter<any>();
 
   // inputData: any;
   isOpen: boolean = false;
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    // debugger;
+    // if(changes.)
+  }
 
   ngOnInit(): void {
   }
@@ -33,16 +38,19 @@ export class LookupComponent implements OnInit {
   }
   onSelect(event: any) {
     this.isOpen = false;
-    debugger;
-    debugger;
-    this.ngModelView = event;
-    this.ngModelViewChange.emit(this.ngModelView);
-    this._inputValue =event && event[this.config.displayPattern] || ''
-    this._ngModelValue=event;
+
+
+    this.NgModel = event;
+    this.NgModelChange.emit(this.NgModel);
+    this._inputValue = event && event[this.config.displayPattern] || ''
+    this._ngModelValue = event;
   }
 
   getDisplay() {
-    return this.ngModelView && this.config.displayPattern ? this.ngModelView[this.config.displayPattern] : '';
+    return this.NgModel && this.config.displayPattern ? this.NgModel[this.config.displayPattern] : '';
   }
-  dotest(){}
+
+  search(){
+    
+  }
 }

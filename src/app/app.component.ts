@@ -11,7 +11,7 @@ import {DataService,IResponse} from './Framework/Services/data.service'
 export class AppComponent implements OnInit{
   lookupConfig:any;
   title = 'Practice';
-  lookUptest:any;
+  lookUptest:any;//={'id':567,'first_name':'Nooshin'};
   dataService!: DataService;
   constructor(protected injector: Injector){
     this.dataService = this.injector.get(DataService);
@@ -36,9 +36,5 @@ configLookup(){
 
   );
 }
-click(data:any){
-  console.info(JSON.stringify(data))
-  console.info(JSON.stringify(this.lookUptest))
 
-}
 }
