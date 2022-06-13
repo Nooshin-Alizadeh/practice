@@ -9,7 +9,7 @@ import { Spinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 //  import {} from '../'
 
 
-import {DataService,IResponse} from '../../Services/data.service'
+import { DataService, IResponse } from '../../Services/data.service'
 // import {DataService} from '../../../Framework/Services/data.service'
 export class GridDataSourceConfig<T> extends DataSource<T> {
 
@@ -149,11 +149,11 @@ export class GridComponent implements OnInit, AfterViewInit {
   };
 
   private _config!: GridConfig;
-  
+
   // @Output() onSelect = new EventEmitter<any>();
   @Output() onSelect = new EventEmitter<any>();
   @Input() set config(config: GridConfig) {
-    
+
     this._config = config;
     if (this.config && this.config.displayColumns.length > 0) {
       this.init();
@@ -252,7 +252,13 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     this.get(this.config.page);
   }
-
+  @Input() set searchOption(value: string) {
+    debugger;
+    var filterData = this.dataSource.filter(s => {
+      return JSON.stringify(s).includes(value);
+    });
+    this.config.dataSource.data.next(filterData);
+  }
   private setDefaults(): void {
 
     this.dataSource = [];
@@ -310,19 +316,19 @@ export class GridComponent implements OnInit, AfterViewInit {
     });
     this.config.dataSource.data.next(this.dataSource);
   }
-   idSort:GridSortConfig | undefined;
+  idSort: GridSortConfig | undefined;
   public get gridSortConfig(): typeof GridSortConfig {
-    return GridSortConfig; 
+    return GridSortConfig;
   }
-  public sortByField(field:string='', direction: GridSortConfig): void {
+  public sortByField(field: string = '', direction: GridSortConfig): void {
 
-    var columnIndex =this.config.columns.findIndex((dataItem)=>{return dataItem.field==field});
-    this.sort(this.config.columns[columnIndex],direction)
+    var columnIndex = this.config.columns.findIndex((dataItem) => { return dataItem.field == field });
+    this.sort(this.config.columns[columnIndex], direction)
 
   }
   public sort(column: GridColumnConfig, direction: GridSortConfig): void {
-  //public sort(field:string='', direction: GridSortConfig=GridSortConfig.Descending): void {
-    
+    //public sort(field:string='', direction: GridSortConfig=GridSortConfig.Descending): void {
+
     if (!Array.isArray(this.config.dataSource.data.value)) {
       return;
     }
@@ -345,10 +351,12 @@ export class GridComponent implements OnInit, AfterViewInit {
 
   private get(page: number): void {
 
-    
+
     this.loading();
     if (this.config.requestType === 'get') {
       this.httpService.get(this.config.url || '', this.getParams()).subscribe((response: IResponse<any>) => {
+
+        
         if (this.config.mapper && typeof (this.config.mapper) === 'function') {
           response.data = this.config.mapper(response.data);
         }
@@ -391,14 +399,14 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     return params;
   }
-  extractData(row:any , field:string){
+  extractData(row: any, field: string) {
     return row[field];
   }
-  extractTitle(config:any,field:string){
-    return config.columns.filter((s: { field: string; })=>s.field==field)[0].title;
+  extractTitle(config: any, field: string) {
+    return config.columns.filter((s: { field: string; }) => s.field == field)[0].title;
   }
-  selectRow(event:any,rowData:any){//:PointerEvent|
-    
+  selectRow(event: any, rowData: any) {//:PointerEvent|
+
     this.onSelect.emit(rowData);
   }
 

@@ -58,7 +58,7 @@
     <div class="col-md-6 col-lg-7">
         <ngb-pagination class="d-flex justify-content-start" [boundaryLinks]="true" size="sm" (pageChange)="pageChange($event)" [pageSize]="config.pageSize || 0" [collectionSize]="config.total || 0" [page]="config.page"></ngb-pagination>
     </div>
-    <!-- <div class="col-md-3 col-lg-3 text-right ">
+    <div class="col-md-3 col-lg-3 text-right ">
         <ul class="">
             <li>
                 <button title="Refresh">(click)="config.refresh()"
@@ -67,8 +67,8 @@
             </li>
         </ul>
         <span>{{ config.total }} Items</span>
-    </div> -->
-    <!-- <div class=" row ml-2 col-md-3 col-lg-2">
+    </div>
+    <div class=" row ml-2 col-md-3 col-lg-2">
         <div>
             <select class="custom-select" (change)="changeSize($event.target)" [(ngModel)]="config.pageSize">
                 <option *ngFor="let item of pageSizes" [ngValue]="item">{{ item }}</option>
@@ -76,5 +76,5 @@
             </select>
         </div>
         <div class=" ml-2" style="color: #212529; font-size:13px;line-height: 30px;">Row Per Page</div>
-    </div> -->
+    </div>
 </div>
