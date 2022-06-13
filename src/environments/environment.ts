@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apUri: 'https://reqres.in/'
+  apUri:"https://localhost:44300/weatherforecast",
+  // apUri: 'https://reqres.in/'
 };
 
 /*

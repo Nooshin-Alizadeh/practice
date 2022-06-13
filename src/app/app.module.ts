@@ -20,12 +20,16 @@ import {MatTableModule} from '@angular/material/table';
 import { GridComponent } from './Framework/Component/grid/grid.component';
 // import {CdkTableModule} from '@angular/cdk/table';
 import { MatCardModule } from '@angular/material/card';
+import { BaseInputComponent } from './base-input/base-input.component';
+// import { IconDirective } from './BaseInput/icon.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LookupComponent,
-    GridComponent
+    GridComponent,
+    BaseInputComponent,
+    // IconDirective
     // UserListComponent,
     // GridComponent,
     // ToolbarConfigComponent,
@@ -46,7 +50,8 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule
   ],
   exports: [
-    CdkTableModule
+    CdkTableModule,
+    // IconDirective
   ],
   providers: [NgbNavItem],
   bootstrap: [AppComponent],
