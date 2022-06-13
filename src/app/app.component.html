@@ -320,17 +320,32 @@
 </div>
 
 <div class="content" role="main">
+***{{test}}***
+    <div class="row">
+<app-base-input [(modelValue)]="test" (clickTest)="alert($event)" >
 
+</app-base-input>
+        <!-- <app-lookup [config]="lookupConfig"></app-lookup> -->
+        <!-- <app-lookup [config]="lookupConfig" [(NgModel)]="lookUptest" (NgModelChange)="$event"></app-lookup> -->
+    </div>
+    
     <div class="row">
 
         <!-- <app-lookup [config]="lookupConfig"></app-lookup> -->
-        <app-lookup [config]="lookupConfig" [(NgModel)]="lookUptest"></app-lookup>
+        <!-- <app-grid [config]="lookupConfig.grid" ></app-grid> -->
     </div>
 
+    <div class="row">
+        <label>{{
+            lableValue
+        }}</label>
+    </div>
     <!-- Resources -->
 
     <input type="hidden" #selection>
-
+<div class="row">
+    <app-base-input [configuration]="inputConfig"></app-base-input>
+</div>
 
 
 
