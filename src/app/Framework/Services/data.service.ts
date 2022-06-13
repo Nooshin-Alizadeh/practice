@@ -41,6 +41,7 @@ export class DataService {
   }
 
   getUrl(module: string) {
+    return this.baseUrl;
     return `${this.baseUrl}api/${module}`;
   }
 
