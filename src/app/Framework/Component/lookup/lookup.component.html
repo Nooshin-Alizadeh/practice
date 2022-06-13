@@ -1,10 +1,12 @@
 <div class="input-group">
-    <input type="text" (click)="toggle()" [(ngModel)]="_inputValue" class="form-control" style="border-right:0;" (change)="search()">
+    <input type="text" (click)="toggle()" [(ngModel)]="_inputValue" 
+    [ngModelOptions]="{updateOn:'blur'}"
+    class="form-control" style="border-right:0;" (change)="search()">
     <div class="input-group-append">
         <span *ngIf="_inputValue" class="input-group-text material-icons" style="
             cursor: pointer;
             border-right:0;border-left:0;background-color: white;" (click)="onSelect(null)">close </span>
-        <span class="input-group-text material-icons" id="basic-addon2">
+        <span class="input-group-text material-icons" id="basic-addon2" (change)="search()">
             search
         </span>
     </div>
@@ -13,7 +15,7 @@
 
 <div *ngIf="isOpen" style="width: min-content;">
     <mat-card>
-        <app-grid [config]="config.grid" (onSelect)="onSelect($event)"></app-grid>
+        <app-grid [config]="config.grid" (onSelect)="onSelect($event)" [searchOption]="_inputValue"></app-grid>
     </mat-card>
 
 </div>

@@ -51,6 +51,7 @@ export class LookupComponent implements OnInit, OnChanges {
   }
 
   search(){
-    
+    this._inputValue;
+    debugger;
   }
 }
