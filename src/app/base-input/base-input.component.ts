@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output ,EventEmitter, Renderer2} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-base-input',
@@ -8,25 +8,25 @@ import { Component, Input, OnInit, Output ,EventEmitter, Renderer2} from '@angul
 
 export class BaseInputComponent implements OnInit {
 
-  constructor(public render :Renderer2) {
-    this.configuration={};
-   }
+  constructor(public render: Renderer2) {
+    this.configuration = {};
+  }
 
-  @Input()configuration: baseInput;
-  @Input()modelValue: string;
+  @Input() configuration: baseInput;
+  @Input() modelValue: string;
   _inputValue;
-@Output()clickTest=new EventEmitter();
-  @Output()modelValueChange=new EventEmitter();
+  @Output() clickTest = new EventEmitter();
+  @Output() modelValueChange = new EventEmitter();
   ngOnInit(): void {
-    var self=this;
+    var self = this;
     // setTimeout(() => {
     //   self.modelValueChange.emit();
     // }, 10000);
-    setInterval(()=>{
-self.modelValueChange.emit(this.render);
-    },100)
+    setInterval(() => {
+      // self.modelValueChange.emit(this.render);
+    }, 100)
   }
-  fnChange(){
+  fnChange() {
     this.modelValueChange.emit();
   }
 
@@ -38,6 +38,6 @@ export interface baseInput {
   icon?: string;
   style?: string;
   type?: string;
-  showIcon?:boolean;
+  showIcon?: boolean;
 
 }

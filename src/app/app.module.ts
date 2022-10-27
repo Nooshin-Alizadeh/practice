@@ -21,6 +21,8 @@ import { GridComponent } from './Framework/Component/grid/grid.component';
 // import {CdkTableModule} from '@angular/cdk/table';
 import { MatCardModule } from '@angular/material/card';
 import { BaseInputComponent } from './base-input/base-input.component';
+import { SampleDialogComponent } from './page/sample-dialog/sample-dialog.component';
+// import { ModalComponent } from './Framework/Component/modal/modal/modal.component';
 // import { IconDirective } from './BaseInput/icon.directive';
 
 @NgModule({
@@ -29,6 +31,8 @@ import { BaseInputComponent } from './base-input/base-input.component';
     LookupComponent,
     GridComponent,
     BaseInputComponent,
+    SampleDialogComponent,
+    // ModalComponent,
     // IconDirective
     // UserListComponent,
     // GridComponent,
